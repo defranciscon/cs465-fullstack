@@ -1,0 +1,14 @@
+<div class="sidebar">
+	{{#each articles}}
+	{{#each category}}
+	<h3>{{this.name}}</h3>
+	<ul>
+		{{#each this.titleList}}
+		<li>
+			<a href="/news">{{this.title}}</a>
+		</li>
+		{{/each}}
+	</ul>
+	{{/each}}
+	{{/each}}
+</div>
