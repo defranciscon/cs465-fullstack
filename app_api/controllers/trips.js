@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');       // .set('debug', true) require mongoose to access our database
-const model = mongoose.model('trips');      // bring in the model for trips
+const Trip = mongoose.model('trips');      // bring in the model for trips
 
 // GET: /trips - lists all the trips
 const tripsList = async (req, res) => {

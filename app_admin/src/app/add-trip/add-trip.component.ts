@@ -35,17 +35,14 @@ export class AddTripComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    if(this.addForm.valid){
+    if(this.addForm.valid) {
       this.tripService.addTrip(this.addForm.value)
-      .then( data => {
+      .subscribe((data) => {
         console.log(data);
         this.router.navigate(['']);
       });
     }
   }
     // get the form short name to access the form fields
-  get f() { return this.addForm.controls; }
-  
+  get f() { return this.addForm.controls; } 
 }
-
-  // get the form short name to access the form fields

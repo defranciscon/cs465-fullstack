@@ -12,9 +12,9 @@ import { Trip } from 'models/trip';
 
 export class TripListingComponent implements OnInit {
   
-  trips!: Trip[];
+  trips: Trip[] = [];
   
-  message!: string;
+  message: string | any;
 
   constructor(
     private tripDataService: TripDataService,
@@ -22,21 +22,22 @@ export class TripListingComponent implements OnInit {
     ) { }
 
   public addTrip(): void {
+    console.log('Inside TriplistingComponent#addTrip');
     this.router.navigate(['add-trip']);
   }
 
   private getTrips(): void {
-    console.log('Inside TripListingComponent#get  rips');
+    console.log('Inside TripListingComponent#getTrips');
     this.message = 'Searching for trips';
-    this.tripDataService.getTrips().next =
+    this.tripDataService.getTrips().subscribe((trips) => 
+      this.trips = trips);
       (foundTrips: Trip[]) => {
-      this.message = foundTrips.length > 0 ? ' ' : 'No trips found';
-      this.trips = foundTrips;
+        this.message = foundTrips.length > 0 ? ' ' : 'No trips found';
+        this.trips = foundTrips;
       };
     };
 
   ngOnInit(): void {
     this.getTrips();
-    this.addTrip();
   }
 }
