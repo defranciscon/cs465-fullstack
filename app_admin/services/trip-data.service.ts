@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Trip } from 'models/trip';
-import { Observable, Observer, lastValueFrom, of } from 'rxjs';
+import { Observable, catchError, map, pluck, throwError } from 'rxjs';
 
-@Injectable({ 
-  providedIn: 'root'  
-})
+@Injectable()
 
 export class TripDataService {
   
@@ -16,32 +14,37 @@ export class TripDataService {
 
   public getTrips(): Observable<Trip[]> {
     console.log('Inside TripDataService#getTrips');
-    return this.http.get<Trip[]>(this.tripUrl);
+    return this.http
+      .get<Trip[]>(this.tripUrl, {responseType: 'json'})
   }
     
   public addTrip(formData: Trip): Observable<Trip> {
     console.log('Inside TripDataService#addTrip');
-    return this.http.post<Trip>(this.tripUrl, formData).pipe(map());
-      //catch(this.handleError);
+    return this.http
+      .post<Trip>(this.tripUrl, formData, {
+        responseType: 'json'
+      })
   }
 
   public getTrip(tripCode: string): Observable<Trip> {
     console.log('Inside TripDataService#getTrip(tripCode)');
-    return this.http.get<Trip>(this.tripUrl + tripCode);
-      //catch(this.handleError);
+    return this.http
+      .get<Trip>(this.tripUrl + tripCode, {
+        responseType: 'json'
+      })
   }
 
   public updateTrip(formData: Trip): Observable<Trip> {
     console.log('Inside TripDataService#updateTrip');
     console.log(formData);
-    return this.http.put<Trip>(this.tripUrl + formData.code, formData);
-      //then(response.json)
-      //catch(this.handleError);
+    return this.http
+      .put<Trip>(this.tripUrl + formData.code, formData, {
+        responseType: 'json'
+      })
   }
 
   private handleError(error: any): Observable<any> {
     console.error('Something has gone wrong', error); // for demo purposes only
-    // FIX ME
-    return (error.message || error);
+    return throwError(() => new Error(error.message || error));
   }
 }

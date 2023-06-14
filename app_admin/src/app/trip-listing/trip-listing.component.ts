@@ -22,20 +22,19 @@ export class TripListingComponent implements OnInit {
     ) { }
 
   public addTrip(): void {
-    console.log('Inside TriplistingComponent#addTrip');
+    console.log('Inside TripListingComponent#addTrip');
     this.router.navigate(['add-trip']);
   }
 
   private getTrips(): void {
     console.log('Inside TripListingComponent#getTrips');
     this.message = 'Searching for trips';
-    this.tripDataService.getTrips().subscribe((trips) => 
-      this.trips = trips);
-      (foundTrips: Trip[]) => {
-        this.message = foundTrips.length > 0 ? ' ' : 'No trips found';
-        this.trips = foundTrips;
-      };
-    };
+    this.tripDataService.getTrips().subscribe(foundTrips => {
+      this.message = foundTrips.length > 0 ? ' ' : 'No trips found';
+      this.trips = foundTrips
+      console.log(foundTrips)
+    });
+  }
 
   ngOnInit(): void {
     this.getTrips();
