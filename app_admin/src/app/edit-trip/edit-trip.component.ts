@@ -8,10 +8,10 @@ import { TripDataService } from 'services/trip-data.service';
   templateUrl: './edit-trip.component.html',
   styleUrls: ['./edit-trip.component.css']
 })
-export class EditTripComponent implements OnInit{
+export class EditTripComponent implements OnInit {
 
   editForm: FormGroup | any;
-  submitted: false | any;
+  submitted = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,7 +46,7 @@ export class EditTripComponent implements OnInit{
     this.tripService.getTrip(tripCode)
       .subscribe((data) => {
         console.log(data);
-        this.editForm.patchValue(data);
+        this.editForm.patchValue(data[0]);
     })
   }
   onSubmit() {

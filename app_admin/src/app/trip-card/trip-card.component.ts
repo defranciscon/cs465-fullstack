@@ -10,7 +10,7 @@ import { Trip } from 'models/trip';
 
 export class TripCardComponent implements OnInit {
 
-  @Input('trip') trip: Trip | any;
+  @Input('trip') trip: any;
 
   constructor(
     private router: Router 
@@ -23,5 +23,12 @@ export class TripCardComponent implements OnInit {
     localStorage.removeItem("tripCode");
     localStorage.setItem("tripCode", trip.code);
     this.router.navigate(['edit-trip']);
+  }
+
+  public deleteTrip(trip: Trip): void {
+    console.log('Inside Inside TripCardComponent#deleteTrip');
+    localStorage.removeItem("tripCode");
+    localStorage.setItem("tripCode", trip.code);
+    this.router.navigate(['delete-trip']);
   }
 }

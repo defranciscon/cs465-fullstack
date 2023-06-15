@@ -7,4 +7,6 @@ router.route('/trips').get(tripsController.tripsList).post(tripsController.trips
 
 router.route('/trips/:tripCode').get(tripsController.tripsFindCode).put(tripsController.tripsUpdateTrip);
 
+//router.route('/trips/:tripCode').get(tripsController.tripsFindCode).delete(tripsController.tripsUpdateTrip);
+
 module.exports = router;  

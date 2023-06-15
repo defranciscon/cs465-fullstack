@@ -31,8 +31,8 @@ export class TripListingComponent implements OnInit {
     this.message = 'Searching for trips';
     this.tripDataService.getTrips().subscribe(foundTrips => {
       this.message = foundTrips.length > 0 ? ' ' : 'No trips found';
-      this.trips = foundTrips
-      console.log(foundTrips)
+      this.trips = foundTrips;
+      console.log(foundTrips);
     });
   }
 
