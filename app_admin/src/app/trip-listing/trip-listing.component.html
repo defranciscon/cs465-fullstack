@@ -1,4 +1,4 @@
-<div class="app-add-trip">
+<div *ngIf="isLoggedIn()">
     <button (click)="addTrip()" class="btn btn-info">Add Trip</button>
 </div>
 <div class="row row-cols-3">
