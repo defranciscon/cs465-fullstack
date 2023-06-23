@@ -1,2 +1,10 @@
 # cs465-fullstack
 CS-465 Full Stack Development with MEAN
+
+Express is a web application framework that can use template engines to build HTML on the server. Express delivers the HTML and content directly from the server to the public-facing frontend. The single page application is developed using Angular. The Angular driven SPA runs everything inside the browser and never does a page reload. All application logic, data processing, and template delivery are managed in the browser. The Angular SPA is the dedicated front-end for the admin user-interface. In essence, Express delivers content to the customer-facing frontend while Angular runs everything in the browser for the admin interface which requires less system resources. All of code within each framework is based on Javascript in which the application logic is written in.
+
+The backend uses MongoDB for storing the data. MongoDB is a NoSQL or unstructured database. Where structured databases use columns and rows, MongoDB stores data in collections of documents. A collection of documents contain a wide variety of data inside. MongoDB stores documents as BSON or binary JSON which stands for Javascript Serialized Object Notation. It is the structure in which Javascript holds data. Additionally, Mongoose is added to model the data in the application and interact with the database.
+
+Javascript is a web development language for developing web applications. The data that is sent through the application in JSON format which is stored in the Mongo database. MongoDB stores data in binary JSON and is exposed as JSON through the Mongoose data modeling features. The flow of data between the system's architectural components are made possible with a REST API. The REST API allows interaction with the database through HTTP calls and enablees CRUD operations to be performed on the data (create, read, update, and delete). The REST API is a stateless interface to the database enabling the other applications to work with the data, taking in HTTP requests; processing the request, and sending back HTTP responses. 
+
+
