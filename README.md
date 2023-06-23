@@ -1,5 +1,6 @@
 # cs465-fullstack
 CS-465 Full Stack Development with MEAN
+Developer: Nicolas DeFrancisco
 
 # Architecture
 Express is a web application framework that can use template engines to build HTML on the server. Express delivers the HTML and content directly from the server to the public-facing frontend. The single page application is developed using Angular. The Angular driven SPA runs everything inside the browser and never does a page reload. All application logic, data processing, and template delivery are managed in the browser. The Angular SPA is the dedicated front-end for the admin user-interface. In essence, Express delivers content to the customer-facing frontend while Angular runs everything in the browser for the admin interface which requires less system resources. All of code within each framework is based on Javascript in which the application logic is written in.
