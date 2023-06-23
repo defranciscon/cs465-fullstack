@@ -15,7 +15,7 @@ export class TripCardComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router 
+    private router: Router
   ) { }
 
   ngOnInit(): void {}
@@ -30,11 +30,5 @@ export class TripCardComponent implements OnInit {
   public isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
-
-  public deleteTrip(trip: Trip): void {
-    console.log('Inside Inside TripCardComponent#deleteTrip');
-    localStorage.removeItem("tripCode");
-    localStorage.setItem("tripCode", trip.code);
-    this.router.navigate(['delete-trip']);
-  }
+  
 }

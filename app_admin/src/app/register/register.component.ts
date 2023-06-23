@@ -18,18 +18,10 @@ export class RegisterComponent implements OnInit {
     password: ''
   };
 
-  public pageContent = {
-    header: {
-      title: 'Create a new account',
-      strapline: ''
-    },
-    sidebar: ''
-  };
-
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
-  ) { }
+    ) { }
 
   ngOnInit() { }
 
@@ -41,15 +33,14 @@ export class RegisterComponent implements OnInit {
       this.formError = 'All fields are required, please try again';
     } else {
       this.doRegister();
-      this.registerSuccess = 'Registration successful'
+      this.registerSuccess = 'Registration successful';
     }
   }
 
   private doRegister(): void {
     this.authenticationService.register(this.credentials)
     .subscribe(() => this.router.navigateByUrl('#')
-    .catch((message) =>
-    this.formError = message)
+    .catch((message) => this.formError = message)
     );
   }
 }

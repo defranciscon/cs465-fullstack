@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TripDataService } from 'services/trip-data.service';
+import { AuthenticationService } from 'services/authentication';
 
 @Component({
   selector: 'app-add-trip',
@@ -16,7 +17,8 @@ export class AddTripComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private tripService: TripDataService
+    private tripService: TripDataService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -33,16 +35,22 @@ export class AddTripComponent implements OnInit {
     })
   }
 
+  // get the form short name to access the form field
+  
   onSubmit() {
     this.submitted = true;
     if(this.addForm.valid) {
       this.tripService.addTrip(this.addForm.value)
       .subscribe((data) => {
-        console.log(data);
-        this.router.navigate(['']);
-      });
+          console.log(data)
+          this.router.navigate([''])
+      }); 
     }
   }
-    // get the form short name to access the form fields
+
+  public isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
+  }
+
   get f() { return this.addForm.controls; } 
 }

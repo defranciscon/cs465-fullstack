@@ -6,8 +6,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require('hbs');
-const passport = require('passport');
 
+const passport = require('passport');
 require('./app_api/models/db');
 require('./app_api/config/passport');
 

@@ -1,8 +1,7 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'services/authentication';
-import { User } from 'models/user';
-
 
 @Component({ 
   selector: 'app-login', 
@@ -17,12 +16,12 @@ export class LoginComponent implements OnInit {
   public credentials = { 
     name: '', 
     email: '', 
-    password: '' 
+    password: ''
   };
 
   constructor( 
     private router: Router, 
-    private authenticationService: AuthenticationService
+    private authService: AuthenticationService
   ) { }
   
   ngOnInit() {} 
@@ -32,15 +31,15 @@ export class LoginComponent implements OnInit {
     if (!this.credentials.email || !this.credentials.password) { 
       this.formError = 'All fields are required, please try again'; 
     } else { 
-      this.doLogin(); 
+      this.doLogin();
     } 
   }
     
   private doLogin(): void { 
-    this.authenticationService.login(this.credentials)
+    this.authService.login(this.credentials)
     .subscribe(() => this.router.navigateByUrl('#')
-    .catch((message) =>
-    this.formError = message)
+    .catch((message) => this.formError = message)
     );
   }
+  
 }

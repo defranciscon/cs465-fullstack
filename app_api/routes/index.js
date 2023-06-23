@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const {expressjwt: jwt} = require('express-jwt');
+
 const auth = jwt({
     secret: process.env.JWT_SECRET,
-    algorithms: ['HS512'],
+    algorithms: ['HS256'],
     requestProperty: 'payload'
 });
 
@@ -27,8 +28,6 @@ router
 router
     .route('/trips/:tripCode')
     .get(tripsController.tripsFindCode)
-    .put(auth, tripsController.tripsUpdateTrip);
-
-//router.route('/trips/:tripCode').get(tripsController.tripsFindCode).delete(tripsController.tripsUpdateTrip);
+    .put(auth, tripsController.tripsUpdateTrip)
 
 module.exports = router;  

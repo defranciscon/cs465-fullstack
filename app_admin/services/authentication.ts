@@ -3,7 +3,7 @@ import { BROWSER_STORAGE } from 'src/app/storage';
 import { User } from '../models/user'; 
 import { AuthResponse } from '../models/authresponse'; 
 import { TripDataService } from '../services/trip-data.service';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({ 
     providedIn: 'root' 
@@ -17,7 +17,7 @@ export class AuthenticationService {
     ) { }
 
     // Look up InjectionToken documentation from angular/core
-    public getToken(): string | any { 
+    public getToken(): string {
         return this.storage.getItem('travlr-token'); 
     }
 
@@ -32,10 +32,11 @@ export class AuthenticationService {
         }));
     }
     
-    public register(user: User): Observable<any> { 
+    public register(user: User): Observable<any> {
         return this.tripDataService.register(user) 
-        .pipe(map((authResp: AuthResponse) => {
-            this.saveToken(authResp.token)
+        .pipe(map((authResp: AuthResponse) => 
+        {
+            this.saveToken(authResp.token);
         })); 
     }
 
@@ -44,7 +45,7 @@ export class AuthenticationService {
     }
 
     public isLoggedIn(): boolean {
-        const token = this.getToken();
+        const token: string | null = this.getToken();
         if (token) {
             const payload = JSON.parse(atob(token.split('.')[1]));
             return payload.exp > (Date.now() / 1000);
@@ -57,7 +58,7 @@ export class AuthenticationService {
         if (this.isLoggedIn()) {
             const token = this.getToken();
             const { email, name } = JSON.parse(atob(token.split('.')[1]));
-            return {email, name } as User;
+            return { email, name} as User;
         }
     }
 }
